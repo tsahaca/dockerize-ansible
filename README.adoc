@@ -1,0 +1,20 @@
+== Running ansible in a docker container
+Ansible is an important tool in DevOps, but there is no easy way to install run it in windows +
+
+. clone the project
+. build the docker imgage
+. docker build . -t ansible
+. run the docker image by mounting your project folder which contains ansible playbook and inventory files
+. add entries for the target vagrant boxes to /etc/hosts ( for linux based systems) or C:\Windows\System32\drivers\etc\hosts ( windows )
+. docker run -it --rm  -v ${PWD}:/work -w /work --net host ansible /bin/bash
+. ansible --version
+. run the ansible playbook as 
+. ansible-playbook -i inventory/virtualbox.hosts playbooks/virtualbox.yml
+. Note : If you get some warnings like this 
+Permissions 0644 for '/path/to/my/key.pem' are too open.
+It is required that your private key files are NOT accessible by others.
+This private key will be ignored.
+bad permissions: ignore key: /path/to/my/key.pem
+Permission denied (publickey).
+
+. sudo chmod 600 /path/to/my/private_key
