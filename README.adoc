@@ -1,11 +1,12 @@
 == Running ansible in a docker container
-Ansible is an important tool in DevOps, but there is no easy way to install run it in windows +
+Ansible is an important tool in DevOps, but there is no easy way to install and run it in windows +
+Here we will build a docker image of ansible and then run it
 
 . clone the project
-. build the docker imgage
+. build the docker image
 . docker build . -t ansible
-. run the docker image by mounting your project folder which contains ansible playbook and inventory files
 . add entries for the target vagrant boxes to /etc/hosts ( for linux based systems) or C:\Windows\System32\drivers\etc\hosts ( windows )
+. run the docker image by mounting your project folder which contains ansible playbook and inventory files
 . docker run -it --rm  -v ${PWD}:/work -w /work --net host ansible /bin/bash
 . ansible --version
 . run the ansible playbook as 
